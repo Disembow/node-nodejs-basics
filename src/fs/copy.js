@@ -9,6 +9,10 @@ const targetDir = path.resolve(__dirname, 'files_copy');
 
 const copy = async () => {
   try {
+    await fs.stat(originalDir, (error) => {
+      if (error) throw new Error(errorMessage);
+    });
+
     await fs.mkdir(targetDir, { recursive: true }, (error) => {
       if (error) throw new Error(errorMessage);
     });
